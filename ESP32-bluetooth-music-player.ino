@@ -18,7 +18,7 @@
 #include "rotary_encoder_stuff.h"
 #include "a2dp_stuff.h"
 
-// STATUS
+// STATE
 uint8_t menu_position  = 0;
 uint8_t MENU_SIZE      = 5;
 bool    volume_setting = false;
@@ -32,11 +32,11 @@ void setup()
 {
   Serial.begin( 115200 );
 
-  init_display();
-  init_rotary_encoder( MENU_SIZE - 1 );
-  init_a2dp( volume );
+  display_init();
+  rotary_encoder_init( MENU_SIZE - 1 );
+  a2dp_init( volume );
 
-  drawSprites( 10, 10, 0 );
+  display_drawSprites( 10, 10, 0 );
 }
 
 
@@ -52,7 +52,7 @@ void loop()
     if( rotaryEncoder.encoderChanged() )
     {
       menu_position = rotaryEncoder.readEncoder();
-      drawSprites( 10, 10, menu_position );
+      display_drawSprites( 10, 10, menu_position );
     }
   
     // Trigger on button
@@ -67,7 +67,7 @@ void loop()
         case 4:
         {
           volume_setting = true;
-          set_range( 0, 127, volume );
+          rotary_encoder_set_range( 0, 127, volume );
           break;
         }
       }
@@ -79,15 +79,15 @@ void loop()
     if( rotaryEncoder.encoderChanged() )
     {
       volume = rotaryEncoder.readEncoder();
-      set_volume( volume );
-      drawVolumeBar( volume );
+      a2dp_set_volume( volume );
+      display_drawVolumeBar( volume );
     }
 
     // Trigger on button
     if( rotaryEncoder.isEncoderButtonClicked() )
     {
       volume_setting = false;
-      set_range( 0, MENU_SIZE - 1, menu_position );
+      rotary_encoder_set_range( 0, MENU_SIZE - 1, menu_position );
     }
   }
 

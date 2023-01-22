@@ -2,12 +2,12 @@
 #define A2DP_STUFF_H
 
 #ifdef DISABLE_A2DP
-void init_a2dp( uint8_t initial_volume ) {}
+void a2dp_init( uint8_t initial_volume ) {}
 void a2dp_set_volume( uint8_t value ) {}
-a2dp_previous() {}
-a2dp_play() {}
-a2dp_pause() {}
-a2dp_next() {}
+void a2dp_previous() {}
+void a2dp_play() {}
+void a2dp_pause() {}
+void a2dp_next() {}
 #else // DISABLE_A2DP
 
 #include "BluetoothA2DPSink.h"
@@ -21,7 +21,7 @@ void avrc_metadata_callback( uint8_t data1, const uint8_t * data2 )
 }
 
 
-void init_a2dp( uint8_t initial_volume )
+void a2dp_init( uint8_t initial_volume )
 {
  // A2DP configuration
  const i2s_config_t i2s_config = {
@@ -45,7 +45,7 @@ void init_a2dp( uint8_t initial_volume )
 }
 
 
-void set_volume( uint8_t value )
+void a2dp_set_volume( uint8_t value )
 {
  a2dp_sink.set_volume( value );
 }

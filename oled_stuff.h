@@ -76,7 +76,7 @@ static const unsigned char PROGMEM volume_sprite[] = {
   };
 
 
-void init_display()
+void display_init()
 {
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
   if( !display.begin( SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS ) )
@@ -103,7 +103,7 @@ void drawInactiveSprite( uint8_t x, uint8_t y, const unsigned char * sprite )
 }
 
 
-void drawSprites( uint8_t x, uint8_t y, uint8_t activeIndex )
+void display_drawSprites( uint8_t x, uint8_t y, uint8_t activeIndex )
 {
   display.clearDisplay();
 
@@ -141,7 +141,7 @@ void drawSprites( uint8_t x, uint8_t y, uint8_t activeIndex )
 }
 
 
-void drawVolumeBar( uint8_t volume )
+void display_drawVolumeBar( uint8_t volume )
 {
   display.clearDisplay();
 
