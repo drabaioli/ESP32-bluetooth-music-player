@@ -15,7 +15,7 @@ PS: This is work in progress.
 ![Playback control screen](/img/playback_control.jpg)
 
 ## Volume control screen
-![Volume control screen](/img/volume_control.jpg')
+![Volume control screen](/img/volume_control.jpg)
 
 # Dependencies:
 - Adafruit SSD1306 : https://github.com/adafruit/Adafruit_SSD1306
